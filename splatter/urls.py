@@ -16,9 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from splat.views import hello_world
-
 urlpatterns = [
-    url(r'^', include("splat.urls")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include("splat.urls")),
 ]

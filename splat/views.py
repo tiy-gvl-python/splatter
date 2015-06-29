@@ -1,6 +1,19 @@
+from django.http import HttpResponseNotFound
+from django.shortcuts import render_to_response
+from splat.models import Splat
 
-from django.http import HttpResponse
+def splat_list(request):
+    all_splats = Splat.objects.all()
+    context = {"messages": all_splats}
+    print("WE ARE HERE")
+    return render_to_response("list_splats.html", context)
 
-def hello_world(request):
-    return HttpResponse("Hello World")
 
+def splat_detail(request, splat_id):
+    try:
+        splat = Splat.objects.get(id=splat_id)
+    except Splat.DoesNotExist:
+        return HttpResponseNotFound("NOT FOUND!")
+    context = {"splat": splat}
+    print("WE ARE IN DETAIL")
+    return render_to_response("splat_detail.html", context)
