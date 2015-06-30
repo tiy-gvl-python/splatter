@@ -5,7 +5,6 @@ from splat.models import Splat
 def splat_list(request):
     all_splats = Splat.objects.all()
     context = {"messages": all_splats}
-    print("WE ARE HERE")
     return render_to_response("list_splats.html", context)
 
 
@@ -15,5 +14,4 @@ def splat_detail(request, splat_id):
     except Splat.DoesNotExist:
         return HttpResponseNotFound("NOT FOUND!")
     context = {"splat": splat}
-    print("WE ARE IN DETAIL")
     return render_to_response("splat_detail.html", context)
