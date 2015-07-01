@@ -2,5 +2,7 @@
 
 {% block body %}
 <div>{{ splat.message }}</div>
+<div>{{ splat.splatee  }}</div>
+<a href="/user-detail/{{ splat.splatee.id }}" >User</a>
 {% endblock %}
 

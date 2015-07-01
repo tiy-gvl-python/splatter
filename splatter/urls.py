@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', splat_views.splat_list),
     url(r'^(?P<splat_id>\d+)/$', splat_views.splat_detail),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^user-detail/(?P<user_id>\d+)/$', splat_views.user_detail),
 ]
