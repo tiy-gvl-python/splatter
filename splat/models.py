@@ -21,6 +21,7 @@ class Painting(models.Model):
 class Splat(models.Model):
     message = models.CharField(max_length=141)
     painting = models.ForeignKey(Painting, null=True)
+    splatee = models.ForeignKey("Splatee")
 
     def __str__(self):
         return "{} - {}".format(self.message, self.painting)
@@ -35,3 +36,6 @@ class Splatee(models.Model):
     occupation = models.IntegerField()
     postal_code = models.IntegerField()
     age = models.IntegerField()
+
+    def __str__(self):
+        return "{} - {}".format(self.age, self.sex)
