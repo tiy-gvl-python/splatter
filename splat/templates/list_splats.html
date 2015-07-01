@@ -6,6 +6,7 @@
 
 {% block body %}
     {% for splat in messages %}
-        <div>{{ splat }}</div>
+        <div><a href="{{ splat.id }}">{{ splat.message }}</a></div>
     {% endfor %}
 {% endblock %}
+

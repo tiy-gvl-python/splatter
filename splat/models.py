@@ -21,17 +21,17 @@ class Painting(models.Model):
 class Splat(models.Model):
     message = models.CharField(max_length=141)
     painting = models.ForeignKey(Painting, null=True)
-    val1 = models.IntegerField()
-    val2 = models.IntegerField()
-    val3 = models.IntegerField()
 
     def __str__(self):
-        return self.message
-
-    @property
-    def average_value(self):
-        return (self.val1 + self.val2 + self.val3) / 3
+        return "{} - {}".format(self.message, self.painting)
 
     @property
     def has_painting(self):
         return bool(self.painting)
+
+
+class Splatee(models.Model):
+    sex = models.CharField(max_length=1)
+    occupation = models.IntegerField()
+    postal_code = models.IntegerField()
+    age = models.IntegerField()
