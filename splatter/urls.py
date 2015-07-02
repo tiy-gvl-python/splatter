@@ -15,12 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
+from django.core.urlresolvers import reverse_lazy
 
 from splat import views as splat_views
 
 urlpatterns = [
-    url(r'^$', splat_views.splat_list),
-    url(r'^(?P<splat_id>\d+)/$', splat_views.splat_detail),
+    url(r'^$', splat_views.splat_list, name="splat_list"),
+    url(r'^accounts/login/', login, name="login"),
+    url(r'^logout/', logout, {'next_page': '/'}, name="logout"),
+
+    url(r'^registration/', splat_views.user_registration, name="user_registration"),
+    url(r'^splat_detail/(?P<splat_id>\d+)/$', splat_views.splat_detail, name="splat_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user-detail/(?P<user_id>\d+)/$', splat_views.user_detail),
 ]
+
+# joelIsAwesome
+# JoelIsAwesome

@@ -6,7 +6,11 @@
 
 {% block body %}
     {% for splat in messages %}
-        <div><a href="{{ splat.id }}">{{ splat.message }}</a></div>
+        {% if user.username %}
+        <div><a href="{% url "splat_detail" splat.id %}">{{ splat.message }}</a></div>
+        {% else %}
+        <div>{{ splat.message }}</div>
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
