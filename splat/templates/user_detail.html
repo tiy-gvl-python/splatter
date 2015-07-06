@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    {% if form %}
+        <form method="post" action="{% url 'create_splat' %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Splat!"/>
+        </form>
+    {% endif %}
+
 <div>{{ splatee.age }}</div>
-    <div>{{ splatee.sex }}</div>
-    <div>{{ splatee.occupation }}</div>
-    <div>{{ splatee.postal_code }}</div>
+<div>{{ splatee.sex }}</div>
+<div>{{ splatee.occupation }}</div>
+<div>{{ splatee.postal_code }}</div>
 {% endblock %}

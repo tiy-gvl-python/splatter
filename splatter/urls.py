@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login, logout
 from django.core.urlresolvers import reverse_lazy
 
@@ -26,10 +27,11 @@ urlpatterns = [
     url(r'^logout/', logout, {'next_page': '/'}, name="logout"),
 
     url(r'^registration/', splat_views.user_registration, name="user_registration"),
-    url(r'^splat_detail/(?P<splat_id>\d+)/$', splat_views.splat_detail, name="splat_detail"),
+    url(r'^splat_detail/(?P<pk>\d+)/$', login_required(splat_views.SplatDetail.as_view()), name="splat_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user-detail/(?P<user_id>\d+)/$', splat_views.user_detail),
-]
+    url(r'^user-detail2/(?P<pk>\d+)/$', splat_views.UserDetailView.as_view()),
+    url(r'^create-splat/$', splat_views.CreateSplatView.as_view(), name="create_splat")
 
-# joelIsAwesome
-# JoelIsAwesome
+
+]

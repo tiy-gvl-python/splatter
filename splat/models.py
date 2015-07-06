@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -36,6 +37,7 @@ class Splatee(models.Model):
     occupation = models.IntegerField()
     postal_code = models.IntegerField()
     age = models.IntegerField()
+    user = models.OneToOneField(User, null=True)
 
     def __str__(self):
         return "{} - {}".format(self.age, self.sex)

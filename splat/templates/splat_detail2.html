@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    IN CLASS BASED VIEW
+<div>Splat Message: {{ object.message }}</div>
+<a href="/user-detail/{{ object.splatee.id }}" >Splatee</a>
+    <div>Soren is {{ soren }}</div>
+{% endblock %}
+
