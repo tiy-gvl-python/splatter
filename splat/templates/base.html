@@ -1,12 +1,15 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Splatter</title>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<h1>SPLAT TOWN!!!</h1>
+<h1 class="joel_header">SPLAT TOWN!!!</h1>
 <h2>{{ user.username }}</h2>
 <a href="/">Home</a>
 {% if user.id %}
@@ -25,5 +28,6 @@
 <!--
 ALL OF MY JAVASCRIPT IMPORT HERE
 -->
+<script type="application/javascript" src="/static/main.js"></script>
 </body>
 </html>
