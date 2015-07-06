@@ -13,4 +13,7 @@
 <div>{{ splatee.sex }}</div>
 <div>{{ splatee.occupation }}</div>
 <div>{{ splatee.postal_code }}</div>
+{% for splat in splatee.splats.all %}
+    <div>{{ splat.message }}</div>
+{% endfor %}
 {% endblock %}

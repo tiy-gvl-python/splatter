@@ -1,14 +1,13 @@
 
 from django import forms
+from django.forms import HiddenInput
 from splat.models import Splat
 
 
+# dead code
 class SplatForm(forms.ModelForm):
-
-    def clean_splatee(self):
-        print("we are in here")
-        return self.cleaned_data['splatee']
+    splatee = forms.CharField(widget=HiddenInput)
 
     class Meta:
-        exclude = ("splatee",)
+        fields = ("message", "painting", "splatee")
         model = Splat

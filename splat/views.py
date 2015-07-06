@@ -3,7 +3,7 @@ from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
-from django.views.generic import DetailView, FormView
+from django.views.generic import DetailView, FormView, CreateView
 from splat.forms import SplatForm
 from splat.models import Splat, Splatee
 
@@ -91,13 +91,13 @@ class UserDetailView(DetailView):
         return context
 
 
-class CreateSplatView(FormView):
-    form_class = SplatForm
+class CreateSplatView(CreateView):
+    model = Splat
+    template_name = "user_detail.html"
     success_url = "/"
+    fields = ["message", "painting"]
 
     def form_valid(self, form):
         splatee = Splatee.objects.get(user=self.request.user)
-        form = super(CreateSplatView, self).form_valid(form)
-        form.instance = Splat(splatee=splatee)
-        form.save()
-
+        form.instance.splatee = splatee
+        return super(CreateSplatView, self).form_valid(form)

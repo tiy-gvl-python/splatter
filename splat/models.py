@@ -22,7 +22,8 @@ class Painting(models.Model):
 class Splat(models.Model):
     message = models.CharField(max_length=141)
     painting = models.ForeignKey(Painting, null=True)
-    splatee = models.ForeignKey("Splatee")
+    splatee = models.ForeignKey("Splatee", related_name="splats")
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "{} - {}".format(self.message, self.painting)
@@ -30,6 +31,9 @@ class Splat(models.Model):
     @property
     def has_painting(self):
         return bool(self.painting)
+
+    class Meta:
+        ordering = ["-created", "-id"]
 
 
 class Splatee(models.Model):
